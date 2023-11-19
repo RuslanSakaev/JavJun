@@ -1,5 +1,5 @@
 package org.sakaevrs.les.les1;
-
+@FunctionalInterface
 public interface PlainInterface {
-    String action(int X, int y);
+    int action(int X, int y);
 }
