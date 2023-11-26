@@ -4,7 +4,7 @@
 1. Напишите программу, которая использует Stream API для обработки списка чисел. 
 Программа должна вывести на экран среднее значение всех четных чисел в списке.
 
-[JavJun\src\main\java\org\sakaevrs\hw\hw1\StreamExample.java](https://github.com/RuslanSakaev/JavJun/blob/master/src/main/java/org/sakaevrs/hw/hw1/StreamExample.java)
+[Пример реализации программы StreamExample.java](https://github.com/RuslanSakaev/JavJun/blob/master/src/main/java/org/sakaevrs/hw/hw1/StreamExample.java)
 
 - код программы:
 ```
@@ -22,9 +22,9 @@ public class StreamExample {
 ```
 2. *Дополнительная задача: Переделать метод балансировки корзины товаров cardBalancing() 
 с использованием Stream API
-```
-JavJun\src\main\java\org\sakaevrs\sem\sem1\task2\Cart.java
-```
+
+[Пример реализации метода cardBalancing() в Cart.java](https://github.com/RuslanSakaev/JavJun/blob/master/src/main/java/org/sakaevrs/sem/sem1/task2/Cart.java)
+
 - переделанный метод балансировки корзины товаров cardBalancing() с использованием Stream API:
 ```
     public void cardBalancing()
