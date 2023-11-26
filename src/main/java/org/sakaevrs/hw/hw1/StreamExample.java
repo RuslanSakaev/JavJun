@@ -14,7 +14,7 @@ public class StreamExample {
     public static void main(String[] args) {
         List<Double> numbers = Arrays.asList(5.596, 10.0, 3.97, 66.57, 8.56, 9.32, 8.6, 8.66, 2.363, 9.5);
 
-        //double average = numbers.stream()
+        //double average = numbers.stream() // создает поток из списка чисел
         //        .filter(n -> n % 2 == 0)  // фильтруем только четные числа
         //        .mapToInt(Integer::intValue) // преобразуем Integer в int
         //        .average()  // находим среднее значение
@@ -22,6 +22,8 @@ public class StreamExample {
 
         //System.out.println("Среднее значение четных чисел: " + average);
 
+
+        //с использованием статических импортёров и метода collect для подсчета среднего значения:
         double average = numbers.stream()
                 .filter(n -> n % 2 == 0)
                 .collect(averagingDouble(Double::doubleValue));
