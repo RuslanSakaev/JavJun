@@ -20,8 +20,8 @@ public class StreamExample {
     }
 }
 ```
-2. *Дополнительная задача: Переделать метод балансировки корзины товаров cardBalancing() 
-с использованием Stream API
+2. *Дополнительная задача: Переделать метод балансировки корзины товаров __cardBalancing()__
+с использованием __Stream API__
 
 [Пример реализации метода cardBalancing() в Cart.java](https://github.com/RuslanSakaev/JavJun/blob/master/src/main/java/org/sakaevrs/sem/sem1/task2/Cart.java)
 
