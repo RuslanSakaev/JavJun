@@ -93,7 +93,7 @@ public class Program {
      */
     static <T extends org.sakaevrs.sem.sem1.task2.Food> void CreateCart(Class<T> clazz, UMarket market)
     {
-        org.sakaevrs.sem.sem1.task2.Cart<T> cart = new org.sakaevrs.sem.sem1.task2.Cart<>(clazz, market);
+        org.sakaevrs.sem.sem1.task2.Cart<T> cart = new org.sakaevrs.sem.sem1.task2.Cart<>(market);
         while (true)
         {
             System.out.println("Список доступных товаров:");
