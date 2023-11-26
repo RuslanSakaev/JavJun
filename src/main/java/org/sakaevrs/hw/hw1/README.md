@@ -3,9 +3,9 @@
 
 1. Напишите программу, которая использует Stream API для обработки списка чисел. 
 Программа должна вывести на экран среднее значение всех четных чисел в списке.
-```
-JavJun\src\main\java\org\sakaevrs\hw\hw1\StreamExample.java
-```
+
+[JavJun\src\main\java\org\sakaevrs\hw\hw1\StreamExample.java](https://github.com/RuslanSakaev/JavJun/blob/master/src/main/java/org/sakaevrs/hw/hw1/StreamExample.java)
+
 - код программы:
 ```
 public class StreamExample {
