@@ -121,8 +121,27 @@ public class QueryBuilder {
      * @param primaryKey
      * @return
      */
-    public String buildDeleteQuery(Class<?> clazz, UUID primaryKey){
-        return null;
-    }
+    public String buildDeleteQuery(Class<?> clazz, UUID primaryKey) {
+        StringBuilder query = new StringBuilder("DELETE FROM ");
 
+        if (clazz.isAnnotationPresent(org.sakaevrs.sem.sem2.task3.Table.class)) {
+            org.sakaevrs.sem.sem2.task3.Table tableAnnotation = clazz.getAnnotation(org.sakaevrs.sem.sem2.task3.Table.class);
+            query.append(tableAnnotation.name()).append(" WHERE ");
+
+            Field[] fields = clazz.getDeclaredFields();
+            for (Field field : fields) {
+                if (field.isAnnotationPresent(Column.class)) {
+                    Column columnAnnotation = field.getAnnotation(Column.class);
+                    if (columnAnnotation.primaryKey()) {
+                        query.append(columnAnnotation.name()).append(" = '").append(primaryKey).append("'");
+                        break;
+                    }
+                }
+            }
+
+            return query.toString();
+        } else {
+            return null;
+        }
+    }
 }
