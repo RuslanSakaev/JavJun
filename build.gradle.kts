@@ -16,6 +16,9 @@ dependencies {
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
     implementation("com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.16.0")
+    // https://mvnrepository.com/artifact/javax.xml.bind/jaxb-api
+    implementation("javax.xml.bind:jaxb-api:2.3.1")
+    implementation("org.glassfish.jaxb:jaxb-runtime:2.3.1")
 }
 
 tasks.test {
