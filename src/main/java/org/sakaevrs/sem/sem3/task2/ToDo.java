@@ -1,12 +1,10 @@
 package org.sakaevrs.sem.sem3.task2;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
+import java.io.*;
 
 public class ToDo implements Externalizable {
 
+    @Serial
     private static final long serialVersionUID = 1L;
 
     //region Поля

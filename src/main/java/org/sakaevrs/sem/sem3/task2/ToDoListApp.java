@@ -3,6 +3,8 @@ package org.sakaevrs.sem.sem3.task2;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -14,6 +16,8 @@ public class ToDoListApp {
     public static final String FILE_JSON = "tasks.json";
     public static final String FILE_BIN = "tasks.bin";
     public static final String FILE_XML = "tasks.xml";
+
+    private static final Logger logger = LoggerFactory.getLogger(ToDoListApp.class);
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
     private static final XmlMapper xmlMapper = new XmlMapper();
@@ -39,11 +43,14 @@ public class ToDoListApp {
                     oos.writeObject(tasks);
                 }
             } else if (fileName.endsWith(".xml")) {
-                //String s = xmlMapper.writeValueAsString(tasks);
-                xmlMapper.writeValue(new File(fileName), tasks);
+                try (FileOutputStream fos = new FileOutputStream(fileName);
+                     BufferedOutputStream bos = new BufferedOutputStream(fos);
+                     ObjectOutputStream oos = new ObjectOutputStream(bos)) {
+                    xmlMapper.writeValue((OutputStream) oos, tasks);
+                }
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            logger.error("Ошибка при сохранении задач в файл '{}': {}", fileName, e.getMessage());
         }
     }
 
@@ -63,7 +70,7 @@ public class ToDoListApp {
                     tasks = xmlMapper.readValue(file, xmlMapper.getTypeFactory().constructCollectionType(List.class, ToDo.class));
                 }
             } catch (IOException | ClassNotFoundException e) {
-                e.printStackTrace();
+                logger.error("Ошибка при загрузке задач из файла '{}': {}", fileName, e.getMessage());
             }
         }
 
