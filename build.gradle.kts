@@ -25,6 +25,8 @@ dependencies {
     implementation("ch.qos.logback:logback-classic:1.4.12")
     // https://mvnrepository.com/artifact/com.mysql/mysql-connector-j
     implementation("com.mysql:mysql-connector-j:8.2.0")
+    // https://mvnrepository.com/artifact/org.hibernate/hibernate-java8
+    implementation("org.hibernate:hibernate-java8:6.0.0.Alpha7")
 
 }
 
