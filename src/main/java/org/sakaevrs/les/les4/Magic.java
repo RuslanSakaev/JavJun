@@ -1,13 +1,16 @@
 package org.sakaevrs.les.les4;
 
-import org.sakaevrs.sem.sem2.task3.Entity;
+import javax.persistence.Entity;
 
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Column;
+
 
 @Entity
-@Table (name = "test.magic")
+@Table(name = "test.magic")
 public class Magic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
