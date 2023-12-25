@@ -7,6 +7,7 @@ import org.hibernate.boot.registry.StandardServiceRegistry;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 
 import java.sql.*;
+import java.util.List;
 
 public class Db {
     public static final String URL = "jdbc:mysql://localhost:3306";
@@ -39,16 +40,47 @@ public class Db {
          * getdata - для сбора данных из таблицы
          */
 
-        final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
-                .configure()
-                .build();
-        SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
-        Session session = sessionFactory.openSession();
-        Magic magic = new Magic("Волшебная стрела", 10, 0);
-        session.beginTransaction();
-        session.save(magic);
-        session.getTransaction().commit();
-        session.close();
+        //final StandardServiceRegistry registry = new StandardServiceRegistryBuilder()
+        //        .configure()
+        //        .build();
+        //SessionFactory sessionFactory = new MetadataSources(registry).buildMetadata().buildSessionFactory();
+        //Session session = sessionFactory.openSession();
+        //Magic magic = new Magic("Magic arrow", 10, 0, 0);
+        //session.beginTransaction();
+        //session.save(magic);
+        //session.getTransaction().commit();
+        //session.close();
+
+        Connector connector = new Connector();
+        try (Session session = connector.getSession()) {
+            List<Magic> books = session.createQuery("FROM Magic",
+                    Magic.class).getResultList();
+            books.forEach(b -> {
+                System.out.println("Book of Magic : " + b);
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        //Magic magic = new Magic("Magic arrow", 10, 0, 0);
+        //session.beginTransaction();
+        //session.save(magic);
+        //magic = new Magic("Lightning", 25, 0, 0);
+        //session.save(magic);
+        //magic = new Magic("Stone Skin", 0, 0, 6);
+        //session.save(magic);
+        //magic = new Magic("Stone Skin", 0, 6, 0);
+        //session.save(magic);
+        //magic = new Magic("Bloodlust", 0, 6, 0);
+        //session.save(magic);
+        //magic = new Magic("A curse", 0, -3, 0);
+        //session.save(magic);
+        //magic = new Magic("Treatment", -30, 0, 0);
+        //session.save(magic);
+        //session.getTransaction().commit();
+        //session.close();
+
+
     }
 }
 

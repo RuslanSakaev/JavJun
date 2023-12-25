@@ -15,16 +15,22 @@ public class Magic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idmagic;
-    @Column(name = "название")
+    @Column(name = "title")
     private String name;
-    @Column(name = "повреждение")
+    @Column(name = "defect")
     private int damage;
-    @Column(name = "атака")
+    @Column(name = "push")
     private int attBonus;
+    @Column(name = "armour")
+    private int def;
 
-    public Magic(String name, int damage, int attBonus) {
+    public Magic(String name, int damage, int attBonus, int def) {
         this.name = name;
         this.damage = damage;
         this.attBonus = attBonus;
+        this.def = def;
+    }
+    public Magic() {
+
     }
 }
