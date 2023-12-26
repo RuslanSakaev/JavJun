@@ -21,7 +21,7 @@ CREATE TABLE Courses (
     duration INT
 );
 ```
-2. Настроим Hibernate с учётом имеющихся проектов:
+2. Настроим Hibernate с учётом имеющихся проектов, для этого добавим ссылку на созданную БД (/SchoolDB) и закомментируем мапинг <mapping class="org.sakaevrs.les.les4.Magic" />:
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE hibernate-configuration PUBLIC
