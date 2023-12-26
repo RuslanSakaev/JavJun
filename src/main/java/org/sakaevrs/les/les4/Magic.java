@@ -14,7 +14,7 @@ import javax.persistence.Column;
 public class Magic {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idmagic;
+    private int id;
     @Column(name = "title")
     private String name;
     @Column(name = "defect")
@@ -32,5 +32,36 @@ public class Magic {
     }
     public Magic() {
 
+    }
+
+    @Override
+    public String toString() {
+        return "Magic{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", damage=" + damage +
+                ", attBonus=" + attBonus +
+                ", def=" + def +
+                '}';
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
+
+    public void setAttBonus(int attBonus) {
+        this.attBonus = attBonus;
+    }
+
+    public void setDef(int def) {
+        this.def = def;
     }
 }
