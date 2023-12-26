@@ -32,7 +32,7 @@ CREATE TABLE Courses (
         <property
                 name="hibernate.connection.driver_class">com.mysql.cj.jdbc.Driver</property>
         <property
-                name="hibernate.connection.url">jdbc:mysql://localhost:3306</property>
+                name="hibernate.connection.url">jdbc:mysql://localhost:3306/SchoolDB</property>
         <property name="hibernate.connection.username">root</property>
         <property name="hibernate.connection.password">pePLiy25</property>
 
@@ -47,7 +47,7 @@ CREATE TABLE Courses (
         <property name="show_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
 
-        <mapping class="org.sakaevrs.les.les4.Magic" />
+        <!-- <mapping class="org.sakaevrs.les.les4.Magic" /> -->
         <mapping class="org.sakaevrs.hw.hw4.Course" />
 
     </session-factory>
