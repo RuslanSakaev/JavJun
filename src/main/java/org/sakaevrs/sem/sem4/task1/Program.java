@@ -25,7 +25,7 @@ public class Program {
 
     public static void main(String[] args) {
 
-        String url = "jdbc:mysql://localhost:3306";
+        String url = "jdbc:mysql://students.db:3306";
         String user = "root";
         String password = "pePLiy25";
 
