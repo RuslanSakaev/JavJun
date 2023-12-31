@@ -33,3 +33,22 @@ dependencies {
 tasks.test {
     useJUnitPlatform()
 }
+
+/// Настройки для многомодульности
+subprojects {
+    sourceCompatibility = "17"
+    targetCompatibility = "17"
+
+    repositories {
+        mavenCentral()
+    }
+
+    dependencies {
+        // Специфические зависимости подпроектов могут быть определены в их собственных build.gradle файлах
+    }
+
+    compileJava.options.encoding = "UTF-8"
+}
+
+// Определение подпроектов
+include "chat-client", "chat-server"
