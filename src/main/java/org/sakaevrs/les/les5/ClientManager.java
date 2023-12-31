@@ -28,13 +28,31 @@ public class ClientManager implements Runnable{
     public void run() {
         String messageFromClient;
 
-        while (socket.isConnected()){
+        while (socket.isConnected()) {
             try {
                 messageFromClient = bufferedReader.readLine();
-                broadcastMessage(messageFromClient);
-            } catch (IOException e){
+                if (messageFromClient.startsWith("TYPING:") || messageFromClient.startsWith("STOPPED_TYPING:")) {
+                    broadcastTypingStatus(messageFromClient);
+                } else {
+                    broadcastMessage(messageFromClient);
+                }
+            } catch (IOException e) {
                 closeEverything(socket, bufferedReader, bufferedWriter);
                 break;
+            }
+        }
+    }
+
+    private void broadcastTypingStatus(String statusMessage) {
+        for (ClientManager clientManager : client) {
+            try {
+                if (!clientManager.name.equals(name)) {
+                    clientManager.bufferedWriter.write(statusMessage);
+                    clientManager.bufferedWriter.newLine();
+                    clientManager.bufferedWriter.flush();
+                }
+            } catch (IOException e) {
+                closeEverything(socket, bufferedReader, bufferedWriter);
             }
         }
     }

@@ -9,6 +9,7 @@ public class Client {
     private BufferedReader bufferedReader;
     private BufferedWriter bufferedWriter;
     private final String name;
+    private volatile boolean isTyping = false;
 
     public Client(Socket socket, String userName) {
         this.socket = socket;
@@ -22,21 +23,58 @@ public class Client {
     }
 
     public void sendMessage(){
-        try {
-            bufferedWriter.write(name);
-            bufferedWriter.newLine();
-            bufferedWriter.flush();
+        Scanner scanner = new Scanner(System.in);
 
-            Scanner scanner = new Scanner(System.in);
-            while (socket.isConnected()){
-                String message = scanner.nextLine();
-                bufferedWriter.write(name + ": " + message);
-                bufferedWriter.newLine();
-                bufferedWriter.flush();
+        new Thread(() -> {
+            while (socket.isConnected()) {
+                if (scanner.hasNextLine()) {
+                    String message = scanner.nextLine();
+                    if (isTyping) {
+                        try {
+                            sendTypingStatus(false);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    }
+                    try {
+                        bufferedWriter.write(name + ": " + message);
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        bufferedWriter.newLine();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                    try {
+                        bufferedWriter.flush();
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
             }
-        } catch (IOException e){
-            closeEverything(socket, bufferedReader, bufferedWriter);
-        }
+        }).start();
+
+        new Thread(() -> {
+            while (socket.isConnected()) {
+                try {
+                    Thread.sleep(3000); // Проверка каждые 3 секунды
+                    if (isTyping) {
+                        sendTypingStatus(false); // Отправка статуса "перестал печатать"
+                    }
+                } catch (InterruptedException | IOException e) {
+                    Thread.currentThread().interrupt();
+                }
+            }
+        }).start();
+    }
+
+    private void sendTypingStatus(boolean isTyping) throws IOException {
+        this.isTyping = isTyping;
+        String statusMessage = isTyping ? "TYPING:" + name : "STOPPED_TYPING:" + name;
+        bufferedWriter.write(statusMessage);
+        bufferedWriter.newLine();
+        bufferedWriter.flush();
     }
 
     public void listenForMessage() {
