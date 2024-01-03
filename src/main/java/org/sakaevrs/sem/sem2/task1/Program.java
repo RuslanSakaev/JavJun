@@ -33,7 +33,8 @@ public class Program {
                 = personalClass.getConstructors();
 
         // Создадим экземпляр класса
-        Object personInstance = constructors[0].newInstance(null);
+        Object personInstance = constructors[0].newInstance();
+
 
         Field nameField = personalClass.getDeclaredField("name");
         nameField.setAccessible(true);

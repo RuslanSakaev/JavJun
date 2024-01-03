@@ -1,5 +1,6 @@
 
 
 rootProject.name = "JavJun"
-include() "chat-client" "chat-server"
 
+include("chat-client")
+include("chat-server")

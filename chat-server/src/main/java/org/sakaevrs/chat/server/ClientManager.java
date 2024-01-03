@@ -1,4 +1,4 @@
-package ru.geekbrains.chat.server;
+package org.sakaevrs.chat.server;
 
 import java.io.*;
 import java.net.Socket;

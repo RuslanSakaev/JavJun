@@ -32,6 +32,8 @@ tasks.test {
     useJUnitPlatform()
 }
 
+tasks.withType<JavaCompile> { options.encoding = "UTF-8" }
+
 /// Настройки для многомодульности
 subprojects {
     // Применение плагина Java к каждому подпроекту
