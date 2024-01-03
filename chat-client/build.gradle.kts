@@ -2,20 +2,23 @@ plugins {
     id("java")
 }
 
-group = "org.example"
+group = "org.sakaevrs.chat-client"
 version = "1.0-SNAPSHOT"
+
+sourceCompatibility = "21"
+targetCompatibility = "21"
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-    // https://mvnrepository.com/artifact/junit/junit
-    testImplementation("junit:junit:4.13.2")
+    // Зависимости, специфичные для chat-client
+    implementation ("com.fasterxml.jackson.core:jackson-databind:2.16.0")
+    implementation ("org.slf4j:slf4j-api:1.7.32")
+    implementation ("ch.qos.logback:logback-classic:1.4.12")
+
+    testImplementation ("org.junit.jupiter:junit-jupiter:5.9.1")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
+compileJava.options.encoding = "UTF-8"

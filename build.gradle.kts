@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.example"
+group = "org.sakaevrs"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -12,8 +12,6 @@ repositories {
 dependencies {
     testImplementation(platform("org.junit:junit-bom:5.9.1"))
     testImplementation("org.junit.jupiter:junit-jupiter")
-    // https://mvnrepository.com/artifact/junit/junit
-    testImplementation("junit:junit:4.13.2")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.core/jackson-databind
     implementation("com.fasterxml.jackson.core:jackson-databind:2.16.0")
     // https://mvnrepository.com/artifact/com.fasterxml.jackson.dataformat/jackson-dataformat-xml
@@ -36,19 +34,23 @@ tasks.test {
 
 /// Настройки для многомодульности
 subprojects {
-    sourceCompatibility = "17"
-    targetCompatibility = "17"
+    // Применение плагина Java к каждому подпроекту
+    apply(plugin = "java")
+
+    java {
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
+    }
 
     repositories {
         mavenCentral()
     }
 
     dependencies {
-        // Специфические зависимости подпроектов могут быть определены в их собственных build.gradle файлах
+        // Зависимости подпроектов
     }
 
-    compileJava.options.encoding = "UTF-8"
+    tasks.withType<JavaCompile> {
+        options.encoding = "UTF-8"
+    }
 }
-
-// Определение подпроектов
-include "chat-client", "chat-server"
