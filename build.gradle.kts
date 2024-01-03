@@ -51,8 +51,4 @@ subprojects {
     dependencies {
         // Зависимости подпроектов
     }
-
-    tasks.withType<JavaCompile> {
-        options.encoding = "UTF-8"
-    }
 }
