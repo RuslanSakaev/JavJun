@@ -36,7 +36,7 @@ public class ClientManager implements Runnable {
     private void sendWelcomeMessage() {
         String welcomeMessage = "Добро пожаловать в чат, " + this.name + "!\n" +
                 "Чтобы отправить личное сообщение, используйте формат\n@username message\n" +
-                "Пример: '@alex: Привет, как дела?'.";
+                "Пример: @alex Привет, как дела?";
         try {
             this.bufferedWriter.write(welcomeMessage);
             this.bufferedWriter.newLine();
